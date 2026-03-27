@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYMA — Pitch Deck 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=SF+Pro+Display:wght@100;200;300;400&family=Geist:wght@100;200;300;400;500&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;background:#000}
+
+:root{
+–black:#000000;
+–near:#080a0d;
+–dark:#0c0f14;
+–surface:#111418;
+–border:#1a1f28;
+–teal:#00c8c8;
+–teal-soft:#00a0a0;
+–gold:#c8a050;
+–white:#f8f9fa;
+–off:#c0c8d4;
+–mid:#606878;
+–dim:#252d38;
+}
+
+/* ── DECK ── */
+.deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+
+/* ── SLIDES ── */
+.s{
+position:absolute;inset:0;
+display:flex;flex-direction:column;
+justify-content:flex-start;align-items:center;
+opacity:0;pointer-events:none;
+transition:opacity .7s cubic-bezier(.4,0,.2,1);
+overflow-y:auto;
+-webkit-overflow-scrolling:touch;
+padding-top:60px;
+padding-bottom:100px;
+}
+.s.active{opacity:1;pointer-events:all}
+
+/* Center content vertically only when it fits */
+@media(min-height:700px){
+.s{justify-content:center}
+.s.scrollable{justify-content:flex-start;padding-top:60px}
+}
+
+/* ── PHOTO BG ── */
+.photo{
+position:fixed;inset:0;
+background-size:cover;background-position:center;
+z-index:0;
+pointer-events:none;
+}
+.photo.dim-heavy::after{content:’’;position:absolute;inset:0;background:rgba(0,0,0,.82)}
+.photo.dim-left::after{content:’’;position:absolute;inset:0;background:linear-gradient(100deg,rgba(0,0,0,.94) 40%,rgba(0,0,0,.55) 100%)}
+.photo.dim-center::after{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 120% 100% at 50% 60%,rgba(0,0,0,.75) 0%,rgba(0,0,0,.92) 100%)}
+.photo.dim-bottom::after{content:’’;position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.96) 75%)}
+
+/* ── CONTENT ── */
+.c{position:relative;z-index:2;width:100%;max-width:1200px;padding:0 80px}
+.c-center{text-align:center;display:flex;flex-direction:column;align-items:center}
+.c-left{text-align:left}
+.c-split{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:center}
+
+/* ── TYPOGRAPHY ── */
+.label{
+font-family:‘Geist Mono’,monospace;
+font-size:10px;letter-spacing:.55em;
+color:var(–teal);text-transform:uppercase;
+font-weight:300;margin-bottom:20px;
+display:block;
+}
+.label.gold{color:var(–gold)}
+.label.dim{color:var(–mid)}
+
+.d1{
+font-family:‘Cormorant Garamond’,serif;
+font-size:clamp(52px,10vw,180px);
+font-weight:200;line-height:.9;
+letter-spacing:-.03em;color:var(–white);
+}
+.d1 em{font-style:italic;color:var(–teal)}
+.d1 .g{color:var(–gold)}
+
+.d2{
+font-family:‘Cormorant Garamond’,serif;
+font-size:clamp(38px,7vw,110px);
+font-weight:200;line-height:.95;
+letter-spacing:-.03em;color:var(–white);
+}
+.d2 em{font-style:italic;color:var(–teal)}
+.d2 .g{color:var(–gold)}
+.d2 .w{color:var(–white)}
+
+.d3{
+font-family:‘Cormorant Garamond’,serif;
+font-size:clamp(28px,5vw,72px);
+font-weight:300;line-height:1.1;
+letter-spacing:-.02em;color:var(–white);
+}
+.d3 em{font-style:italic;color:var(–teal)}
+.d3 .g{color:var(–gold)}
+
+.body{
+font-family:‘Geist’,sans-serif;
+font-size:clamp(13px,1.6vw,20px);
+font-weight:200;color:var(–off);
+line-height:1.75;max-width:620px;
+}
+.body strong{color:var(–white);font-weight:400}
+.body .t{color:var(–teal)}
+
+/* ── MOBILE OVERRIDES ── */
+@media(max-width:768px){
+.c{padding:0 24px}
+.c-split{grid-template-columns:1fr;gap:32px}
+.label{letter-spacing:.3em;margin-bottom:14px}
+.line{margin:20px 0}
+.line.center{margin:20px auto}
+.stat-line{flex-direction:column}
+.stat-b{border-right:none;border-bottom:1px solid var(–border);padding:20px 16px}
+.stat-b:last-child{border-bottom:none}
+.stat-n{font-size:clamp(36px,10vw,56px)}
+.g3{grid-template-columns:1fr!important}
+.icon-row{grid-template-columns:1fr 1fr!important}
+.icon-cell{border-right:none!important;border-bottom:1px solid var(–border)}
+.icon-cell:nth-child(odd){border-right:1px solid var(–border)!important}
+.rmap{flex-direction:column}
+.rphase{border-right:none;border-bottom:1px solid var(–border);padding:20px 16px}
+.rphase:last-child{border-bottom:none}
+.rphase.now::before{right:0;height:1px;width:100%;top:0}
+.tbl{font-size:11px}
+.tbl th{font-size:8px;padding:8px 10px;letter-spacing:.2em}
+.tbl td{padding:10px;font-size:11px}
+.feat-list li{font-size:13px;padding:14px 0}
+.quote{font-size:clamp(18px,5vw,32px)}
+.s{padding-top:48px;padding-bottom:120px}
+}
+
+/* ── LINE ── */
+.line{width:48px;height:1px;background:var(–teal);margin:32px 0}
+.line.gold{background:var(–gold)}
+.line.center{margin:32px auto}
+
+/* ── QUOTE SLIDE ── */
+.quote{
+font-family:‘Cormorant Garamond’,serif;
+font-size:clamp(28px,4vw,52px);
+font-weight:200;font-style:italic;
+color:var(–white);line-height:1.45;
+max-width:880px;
+}
+.quote strong{font-style:normal;color:var(–teal);font-weight:300}
+
+/* ── STAT BILLBOARD ── */
+.stat-line{
+display:flex;gap:0;
+border-top:1px solid var(–border);
+border-bottom:1px solid var(–border);
+margin-top:48px;width:100%;
+}
+.stat-b{
+flex:1;padding:32px 40px;
+border-right:1px solid var(–border);
+}
+.stat-b:last-child{border-right:none}
+.stat-n{
+font-family:‘Cormorant Garamond’,serif;
+font-size:clamp(48px,6vw,80px);
+font-weight:200;color:var(–white);
+line-height:1;
+}
+.stat-n .t{color:var(–teal)}
+.stat-n .g{color:var(–gold)}
+.stat-l{
+font-family:‘Geist Mono’,monospace;
+font-size:10px;letter-spacing:.2em;
+color:var(–mid);text-transform:uppercase;
+margin-top:8px;
+}
+
+/* ── ICON ROW ── */
+.icon-row{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:0;margin-top:60px;width:100%;
+border:1px solid var(–border);
+}
+.icon-cell{
+padding:36px 24px;
+border-right:1px solid var(–border);
+text-align:center;
+background:rgba(255,255,255,.01);
+transition:background .3s;
+}
+.icon-cell:last-child{border-right:none}
+.icon-cell:hover{background:rgba(0,200,200,.04)}
+.icon-num{
+font-family:‘Geist Mono’,monospace;
+font-size:9px;letter-spacing:.3em;
+color:var(–dim);text-transform:uppercase;
+margin-bottom:16px;
+}
+.icon-title{
+font-size:14px;font-weight:400;
+color:var(–white);margin-bottom:8px;
+}
+.icon-body{
+font-size:12px;font-weight:200;
+color:var(–mid);line-height:1.6;
+}
+
+/* ── FEATURE LIST ── */
+.feat-list{list-style:none;margin-top:40px;max-width:640px}
+.feat-list li{
+display:flex;gap:20px;align-items:flex-start;
+padding:18px 0;border-bottom:1px solid var(–border);
+font-size:16px;font-weight:200;color:var(–off);line-height:1.65;
+}
+.feat-list li:last-child{border-bottom:none}
+.feat-list li::before{
+content:’—’;color:var(–teal);
+font-family:‘Geist Mono’,monospace;
+font-size:12px;margin-top:3px;flex-shrink:0;
+}
+.feat-list li strong{color:var(–white);font-weight:400}
+
+/* ── GRID 3 ── */
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;margin-top:48px;background:var(–border);width:100%}
+.g3-cell{background:var(–near);padding:32px 28px}
+.g3-label{
+font-family:‘Geist Mono’,monospace;
+font-size:9px;letter-spacing:.35em;
+color:var(–teal);text-transform:uppercase;
+margin-bottom:12px;
+}
+.g3-label.gold{color:var(–gold)}
+.g3-title{font-size:16px;font-weight:400;color:var(–white);margin-bottom:10px}
+.g3-body{font-size:13px;font-weight:200;color:var(–mid);line-height:1.7}
+
+/* ── ROADMAP ── */
+.rmap{display:flex;gap:0;margin-top:48px;width:100%;border:1px solid var(–border)}
+.rphase{flex:1;padding:28px 24px;border-right:1px solid var(–border);position:relative}
+.rphase:last-child{border-right:none}
+.rphase.now{background:rgba(0,200,200,.03)}
+.rphase.now::before{
+content:’’;position:absolute;top:0;left:0;right:0;
+height:1px;background:var(–teal);
+}
+.rphase-yr{
+font-family:‘Geist Mono’,monospace;font-size:9px;
+letter-spacing:.3em;color:var(–teal);
+text-transform:uppercase;margin-bottom:12px;
+}
+.rphase-yr.dim{color:var(–dim)}
+.rphase-title{font-size:15px;font-weight:400;color:var(–white);margin-bottom:8px}
+.rphase-body{font-size:12px;font-weight:200;color:var(–mid);line-height:1.6}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;margin-top:40px}
+.tbl th{
+font-family:‘Geist Mono’,monospace;font-size:9px;
+letter-spacing:.35em;color:var(–teal);
+text-transform:uppercase;padding:12px 20px;
+text-align:left;border-bottom:1px solid var(–border);
+}
+.tbl td{
+padding:15px 20px;font-size:13px;font-weight:200;
+color:var(–mid);border-bottom:1px solid rgba(26,31,40,.5);
+line-height:1.5;
+}
+.tbl td:first-child{color:var(–white);font-weight:300}
+.tbl td:last-child{
+font-family:‘Geist Mono’,monospace;
+font-size:11px;color:var(–teal);
+}
+.tbl td:last-child.gold{color:var(–gold)}
+
+/* ── NAV ── */
+#nav{
+position:fixed;bottom:0;left:0;right:0;
+display:flex;align-items:center;justify-content:center;gap:20px;
+z-index:300;
+background:rgba(8,10,13,.95);
+backdrop-filter:blur(28px);
+border-top:1px solid var(–border);
+padding:14px 28px;
+padding-bottom:calc(14px + env(safe-area-inset-bottom));
+}
+.nbtn{
+background:none;border:none;
+color:var(–dim);font-family:‘Geist Mono’,monospace;
+font-size:14px;cursor:pointer;padding:4px 12px;
+transition:color .2s;letter-spacing:.05em;
+}
+.nbtn:hover{color:var(–white)}
+.nprog{width:100px;height:1px;background:var(–border)}
+.npfill{height:100%;background:var(–teal);transition:width .5s ease}
+.ncnt{
+font-family:‘Geist Mono’,monospace;
+font-size:11px;letter-spacing:.15em;
+color:var(–mid);min-width:50px;text-align:center;
+}
+
+/* ── CORNERS ── */
+.logo-c{
+position:fixed;top:36px;left:48px;z-index:200;
+font-family:‘Cormorant Garamond’,serif;
+font-size:18px;font-weight:200;
+color:rgba(248,249,250,.18);letter-spacing:.08em;
+}
+.logo-c em{font-style:normal;color:rgba(0,200,200,.35)}
+.num-c{
+position:fixed;top:36px;right:48px;z-index:200;
+font-family:‘Geist Mono’,monospace;font-size:10px;
+letter-spacing:.3em;color:rgba(255,255,255,.1);
+}
+
+/* ── ANIMATIONS ── */
+.s.active .c>*{animation:up .65s cubic-bezier(.4,0,.2,1) both}
+.s.active .c>*:nth-child(1){animation-delay:.06s}
+.s.active .c>*:nth-child(2){animation-delay:.14s}
+.s.active .c>*:nth-child(3){animation-delay:.22s}
+.s.active .c>*:nth-child(4){animation-delay:.30s}
+.s.active .c>*:nth-child(5){animation-delay:.38s}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+</style>
+
+</head>
+<body>
+
+<div class="logo-c">KYM<em>A</em></div>
+<div class="num-c" id="num">01 / 22</div>
+
+<div class="deck" id="deck">
+
+<!-- ══ 01 COVER ══ -->
+
+<div class="s active" style="background:#000">
+  <div class="photo dim-center" style="background-image:url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=2000&q=90')"></div>
+  <div class="c c-center">
+    <span class="label">Confidential · Pre-Seed 2026</span>
+    <div class="d1">KYM<em>A</em></div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center;max-width:500px">
+      The autonomous maritime network<br>connecting the world's island economies.
+    </p>
+    <p style="margin-top:52px;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.55em;color:rgba(255,255,255,.15)">PRESS → TO BEGIN</p>
+  </div>
+</div>
+
+<!-- ══ 02 ONE SENTENCE ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-heavy" style="background-image:url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=2000&q=85')"></div>
+  <div class="c c-center">
+    <div class="d1" style="max-width:900px;text-align:center">
+      Half a billion people.<br><em>No delivery.</em>
+    </div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center">
+      Not because the technology doesn't exist.<br>
+      Because nobody built the network.
+    </p>
+  </div>
+</div>
+
+<!-- ══ 03 THE FOUNDER MOMENT ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label">The Origin</span>
+    <div class="quote" style="text-align:center">
+      "Island entrepreneurs build extraordinary things despite a barrier mainland founders never face. I witnessed this in <strong>Próspera, 2025–26</strong> — brilliant people building the future, limited not by capability but by connectivity."
+    </div>
+    <div class="line center gold"></div>
+    <p style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;color:var(--gold)">
+      Daniel Seyffarth · Founder · Staracces UG · Berlin
+    </p>
+  </div>
+</div>
+
+<!-- ══ 04 THE NAME ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-heavy" style="background-image:url('https://images.unsplash.com/photo-1505915377579-b7b0c37fd05c?w=2000&q=85')"></div>
+  <div class="c c-center">
+    <span class="label">The Name</span>
+    <div class="d1" style="font-size:clamp(100px,18vw,240px)">KYM<em>A</em></div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center">
+      <span style="color:var(--teal)">κύμα</span> — Ancient Greek for <em style="color:var(--white)">wave.</em><br>
+      Waves reach everywhere. Waves are unstoppable.
+    </p>
+  </div>
+</div>
+
+<!-- ══ 05 THE PROBLEM — NUMBERS ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-left" style="max-width:1200px;padding:0 80px">
+    <span class="label">The Problem</span>
+    <div class="d2">The world stops<br>at the <em>water's edge.</em></div>
+    <div class="stat-line">
+      <div class="stat-b">
+        <div class="stat-n">800<span class="t">M</span></div>
+        <div class="stat-l">People on islands<br>without reliable delivery</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n">2<span class="t">wk</span></div>
+        <div class="stat-l">Average wait<br>for a package</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n">0</div>
+        <div class="stat-l">Autonomous island<br>delivery networks</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n" style="font-size:clamp(32px,4vw,56px)">$300<span class="t">B</span></div>
+        <div class="stat-l">Lost economic potential<br>per year</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 06 WHO SUFFERS ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:1100px">
+    <span class="label">Every island. Every need.</span>
+    <div class="d3" style="text-align:center;margin-bottom:48px">
+      From <em>medicine</em> to groceries.<br>From parts to <em>possibility.</em>
+    </div>
+    <div class="g3">
+      <div class="g3-cell">
+        <div class="g3-label" style="color:#c05050">Critical</div>
+        <div class="g3-title">Hospitals & Medical</div>
+        <div class="g3-body">Blood supplies and medication delivered on demand. Life-or-death reliability, not convenience.</div>
+      </div>
+      <div class="g3-cell">
+        <div class="g3-label">Entrepreneurs</div>
+        <div class="g3-title">Startups & Makers</div>
+        <div class="g3-body">Parts, tools, components. Every island founder deserves the same supply chain as Berlin or LA.</div>
+      </div>
+      <div class="g3-cell">
+        <div class="g3-label gold">B2B</div>
+        <div class="g3-title">Hotels & Restaurants</div>
+        <div class="g3-body">Daily restocking instead of 300% markup on the fortnightly freighter.</div>
+      </div>
+      <div class="g3-cell">
+        <div class="g3-label">Nomads</div>
+        <div class="g3-title">Digital Nomads</div>
+        <div class="g3-body">They stay where packages arrive. They leave when they can't get cables.</div>
+      </div>
+      <div class="g3-cell">
+        <div class="g3-label gold">Export</div>
+        <div class="g3-title">Island Producers</div>
+        <div class="g3-body">First time a fisher or artisan can economically reach the next island — or the world.</div>
+      </div>
+      <div class="g3-cell">
+        <div class="g3-label">Communities</div>
+        <div class="g3-title">Everyone Else</div>
+        <div class="g3-body">Pharmacies, schools, clinics. The infrastructure that makes an island a real place to build a life.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 07 THE SOLUTION — ONE SENTENCE ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-left" style="background-image:url('https://images.unsplash.com/photo-1494791368093-85217fbbf8de?w=2000&q=85')"></div>
+  <div class="c c-left">
+    <span class="label">The Solution</span>
+    <div class="d2">An autonomous fleet<br>that <em>never stops.</em></div>
+    <div class="line"></div>
+    <p class="body">
+      Solar-powered. Tamper-proof. Swarm-intelligent.<br>
+      Packstation to packstation. Island to island.<br>
+      <strong>24 hours. 7 days. No crew. No fuel. No port.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ══ 08 SECURITY ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label">Security Architecture</span>
+    <div class="d2" style="text-align:center">
+      Theft is<br><em>structurally impossible.</em>
+    </div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center;margin-bottom:48px">
+      Can't open it without the recipient's one-time code.<br>
+      Live satellite GPS never stops broadcasting.<br>
+      <strong>A stolen bot is a trackable beacon. Nothing more.</strong>
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);width:100%">
+      <div style="background:var(--near);padding:28px 24px;text-align:center">
+        <div class="g3-label">Layer 1</div>
+        <div class="g3-title">TOTP Code</div>
+        <div class="g3-body">Opens only for recipient. Wrong code = permanent seal + instant alert.</div>
+      </div>
+      <div style="background:var(--near);padding:28px 24px;text-align:center">
+        <div class="g3-label">Layer 2</div>
+        <div class="g3-title">Live GPS</div>
+        <div class="g3-body">Satellite-based. Always on. Cannot be disabled. Recovery is automatic.</div>
+      </div>
+      <div style="background:var(--near);padding:28px 24px;text-align:center">
+        <div class="g3-label">Layer 3</div>
+        <div class="g3-title">Swarm Alert</div>
+        <div class="g3-body">Neighboring bots detect anomalies and flag in real time. The fleet watches itself.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 09 SWARM ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-split" style="max-width:1200px">
+    <div>
+      <span class="label">Swarm Intelligence</span>
+      <div class="d3">The fleet<br><em>self-heals.</em></div>
+      <div class="line"></div>
+      <ul class="feat-list">
+        <li><div><strong>Bot A fails</strong> — distress signal sent instantly to the swarm.</div></li>
+        <li><div><strong>Bot B reroutes</strong> — tows or transfers cargo. Zero humans involved.</div></li>
+        <li><div><strong>Network effect:</strong> more bots = stronger, faster, more resilient for everyone.</div></li>
+        <li><div>Result: <strong>99.9% delivery SLA</strong> — something DHL cannot offer on island routes.</div></li>
+      </ul>
+    </div>
+    <div>
+      <!-- SVG Swarm Diagram -->
+      <div style="background:var(--surface);border:1px solid var(--border);aspect-ratio:1;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 400 400" style="width:85%;height:85%">
+          <defs>
+            <radialGradient id="rg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="rgba(0,200,200,.06)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="400" fill="url(#rg)"/>
+          <!-- Route lines -->
+          <line x1="80" y1="320" x2="200" y2="200" stroke="rgba(0,200,200,.12)" stroke-width="1" stroke-dasharray="5 4"/>
+          <line x1="320" y1="320" x2="200" y2="200" stroke="rgba(0,200,200,.2)" stroke-width="1.5"/>
+          <line x1="80" y1="320" x2="320" y2="320" stroke="rgba(0,200,200,.08)" stroke-width="1" stroke-dasharray="5 4"/>
+          <line x1="200" y1="80" x2="320" y2="200" stroke="rgba(0,200,200,.15)" stroke-width="1" stroke-dasharray="5 4"/>
+          <!-- Rescue path -->
+          <path d="M 320 200 Q 270 160 200 200" stroke="rgba(0,200,200,.6)" fill="none" stroke-width="1.5" stroke-dasharray="6 3">
+            <animate attributeName="stroke-dashoffset" values="0;-18" dur="1.5s" repeatCount="indefinite"/>
+          </path>
+          <!-- Arrow -->
+          <polygon points="198,186 208,196 194,204" fill="rgba(0,200,200,.5)"/>
+          <!-- Bot nodes -->
+          <circle cx="80" cy="320" r="14" fill="rgba(0,200,200,.08)" stroke="rgba(0,200,200,.4)" stroke-width="1.5"/>
+          <text x="80" y="325" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(0,200,200,.7)">A</text>
+          <circle cx="320" cy="320" r="14" fill="rgba(0,200,200,.08)" stroke="rgba(0,200,200,.4)" stroke-width="1.5"/>
+          <text x="320" y="325" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(0,200,200,.7)">C</text>
+          <circle cx="200" cy="80" r="14" fill="rgba(0,200,200,.08)" stroke="rgba(0,200,200,.4)" stroke-width="1.5"/>
+          <text x="200" y="85" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(0,200,200,.7)">D</text>
+          <!-- Rescuer -->
+          <circle cx="320" cy="200" r="16" fill="rgba(0,200,200,.1)" stroke="rgba(0,200,200,.8)" stroke-width="2"/>
+          <text x="320" y="205" text-anchor="middle" font-family="monospace" font-size="10" fill="rgba(0,200,200,.9)">B</text>
+          <!-- Failed bot -->
+          <circle cx="200" cy="200" r="16" fill="rgba(180,60,60,.1)" stroke="rgba(200,80,80,.7)" stroke-width="1.5">
+            <animate attributeName="stroke-opacity" values="1;.2;1" dur="1.8s" repeatCount="indefinite"/>
+          </circle>
+          <text x="200" y="205" text-anchor="middle" font-family="monospace" font-size="12" fill="rgba(200,80,80,.8)">!</text>
+          <!-- Label -->
+          <text x="200" y="375" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(0,200,200,.3)" letter-spacing="3">SWARM RESCUE</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 10 SUSTAINABILITY ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-left" style="background-image:url('https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=2000&q=85')"></div>
+  <div class="c c-left">
+    <span class="label">Sustainability</span>
+    <div class="d2">Not carbon<br>neutral. <em>Negative.</em></div>
+    <div class="line"></div>
+    <p class="body" style="margin-bottom:32px">
+      Every voyage cleans the ocean it crosses.
+    </p>
+    <ul class="feat-list" style="max-width:520px">
+      <li><div><strong>Solar + hydro turbines + wind</strong> — charges while moving, zero fuel forever.</div></li>
+      <li><div><strong>Microplastic nets</strong> — passively dragged on every single route.</div></li>
+      <li><div><strong>Sargassum collection</strong> — Caribbean governments are paying for this right now.</div></li>
+      <li><div><strong>Carbon credits</strong> — verified revenue per operational kilometre.</div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 11 OCEAN INTELLIGENCE ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:1000px">
+    <span class="label">Ocean Intelligence</span>
+    <div class="d3" style="text-align:center">Every route is<br><em>a research mission.</em></div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center;margin-bottom:48px">
+      Real-time coral health. Microplastic density. Ocean temperature.<br>
+      Weather. Salinity. Algae. Streamed continuously.<br>
+      <strong>Sold to NOAA, universities, insurers, climate funds.</strong>
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);width:100%">
+      <div style="background:var(--near);padding:24px 20px;text-align:center">
+        <div class="g3-label gold">Reef Health</div>
+        <div class="g3-body">Coral bleaching detection. First distributed reef monitor in the Caribbean.</div>
+      </div>
+      <div style="background:var(--near);padding:24px 20px;text-align:center">
+        <div class="g3-label">Climate</div>
+        <div class="g3-body">Long-term ocean temperature datasets scientists desperately need.</div>
+      </div>
+      <div style="background:var(--near);padding:24px 20px;text-align:center">
+        <div class="g3-label">Shipping Intel</div>
+        <div class="g3-body">Weather and swell data sold to shipping companies and insurers.</div>
+      </div>
+      <div style="background:var(--near);padding:24px 20px;text-align:center">
+        <div class="g3-label gold">Coast Guard</div>
+        <div class="g3-body">24/7 maritime surveillance. Anomaly detection. Anti-smuggling.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 12 DUAL USE ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label gold">Dual-Use · State & Defense</span>
+    <div class="d2" style="text-align:center">
+      The fleet runs<br>anyway. <span class="g">Sell the data.</span>
+    </div>
+    <div class="line center gold"></div>
+    <p class="body" style="text-align:center">
+      Coast guard, customs, anti-piracy, border monitoring.<br>
+      <strong>Once governments rely on our data stream —<br>we become critical national infrastructure.</strong><br>
+      Politically untouchable.
+    </p>
+  </div>
+</div>
+
+<!-- ══ 13 FIVE STREAMS ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:1200px">
+    <span class="label">Business Model</span>
+    <div class="d3" style="text-align:center;margin-bottom:8px">
+      Five revenue streams. <em>One fleet.</em>
+    </div>
+    <p class="body" style="text-align:center;margin-bottom:48px">The Airbnb model — maximum monetization of a single asset.</p>
+    <div class="icon-row">
+      <div class="icon-cell">
+        <div class="icon-num">01</div>
+        <div class="icon-title">Delivery Fees</div>
+        <div class="icon-body">B2C membership + per-package. B2B annual contracts.</div>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-num" style="color:var(--gold)">02</div>
+        <div class="icon-title">Gov Contracts</div>
+        <div class="icon-body">Surveillance data subscriptions. Annual recurring.</div>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-num">03</div>
+        <div class="icon-title">Ocean Data</div>
+        <div class="icon-body">Science, insurance, climate funds, NOAA.</div>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-num" style="color:var(--gold)">04</div>
+        <div class="icon-title">Ocean Cleanup</div>
+        <div class="icon-body">Sargassum + microplastic removal. Govts paying now.</div>
+      </div>
+      <div class="icon-cell">
+        <div class="icon-num">05</div>
+        <div class="icon-title">Carbon Credits</div>
+        <div class="icon-body">Verified CO2 offsets per operational km. Verra certified.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 14 MARKET ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-heavy" style="background-image:url('https://images.unsplash.com/photo-1548574505-5e239809ee19?w=2000&q=85')"></div>
+  <div class="c c-center">
+    <span class="label">Market</span>
+    <div class="d1" style="text-align:center">An overlooked<br><em>continent.</em></div>
+    <div class="stat-line" style="margin-top:48px">
+      <div class="stat-b">
+        <div class="stat-n">800<span class="t">M</span></div>
+        <div class="stat-l">Global island population<br>underserved today</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n">$11<span class="t">B</span></div>
+        <div class="stat-l">Autonomous maritime<br>market by 2030</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n">0</div>
+        <div class="stat-l">Existing players<br>targeting islands</div>
+      </div>
+      <div class="stat-b">
+        <div class="stat-n">$10<span class="t">M</span></div>
+        <div class="stat-l">ARR from 1%<br>Caribbean penetration</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 15 GRANTS ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-left" style="max-width:1200px">
+    <span class="label">Non-Dilutive Capital</span>
+    <div class="d3" style="margin-bottom:40px">Public money<br><em>already waiting.</em></div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Programme</th><th>Funder</th><th>Angle</th><th>Potential</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>EU Horizon Europe</td><td>European Commission</td><td>Autonomous maritime + ocean restoration</td><td class="gold">€1M – €10M</td></tr>
+        <tr><td>EU Green Deal</td><td>European Commission</td><td>Zero-emission, carbon-negative operations</td><td>€500K – €5M</td></tr>
+        <tr><td>BMWK / BMBF</td><td>Germany</td><td>Hardware innovation, maritime tech</td><td>€100K – €500K</td></tr>
+        <tr><td>UN Ocean / UNEP</td><td>United Nations</td><td>Ocean health, plastic removal, island access</td><td>$100K – $2M</td></tr>
+        <tr><td>World Bank Blue Economy</td><td>World Bank</td><td>Island economic infrastructure</td><td>$500K – $2M+</td></tr>
+        <tr><td>Sargassum Contracts</td><td>Caribbean Govts — now</td><td>Barbados, Mexico, Jamaica actively paying</td><td class="gold">$50K – $500K/yr</td></tr>
+        <tr><td>DARPA / US DoD</td><td>US Defense</td><td>Autonomous maritime ISR — RAND published exact use case</td><td class="gold">Strategic</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 16 CAPITAL ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:1100px">
+    <span class="label">Capital Requirements</span>
+    <div class="d3" style="text-align:center;margin-bottom:48px">Three rounds.<br><em>Clear milestones.</em></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);width:100%">
+      <div style="background:var(--near);padding:36px 32px;border-top:1px solid var(--teal)">
+        <div class="g3-label">Round 1 · Now</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:200;color:var(--white);line-height:1;margin-bottom:20px">€150<span style="color:var(--teal)">K</span></div>
+        <div class="g3-title" style="margin-bottom:16px">Pre-Seed</div>
+        <div class="g3-body" style="line-height:2.2">
+          40% → 5 prototype bots + 2 packstations<br>
+          25% → Patent filing (DPMA + PCT)<br>
+          20% → Próspera pilot logistics<br>
+          10% → Fleet management software<br>
+          5% → Community seeding
+        </div>
+        <div style="margin-top:20px;font-family:'Geist Mono',monospace;font-size:9px;color:var(--teal);letter-spacing:.25em">FIRST AUTONOMOUS DELIVERY</div>
+      </div>
+      <div style="background:var(--near);padding:36px 32px">
+        <div class="g3-label dim">Round 2 · 2027</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:200;color:var(--off);line-height:1;margin-bottom:20px">€1.5<span style="color:var(--mid)">M</span></div>
+        <div class="g3-title" style="margin-bottom:16px;color:var(--off)">Seed</div>
+        <div class="g3-body" style="line-height:2.2">
+          50% → 50 bots, Bay Islands expansion<br>
+          20% → CTO, Head of Ops, BD<br>
+          15% → Maritime licensing, 3 jurisdictions<br>
+          10% → Manufacturing partnerships<br>
+          5% → PR and nomad community
+        </div>
+        <div style="margin-top:20px;font-family:'Geist Mono',monospace;font-size:9px;color:var(--mid);letter-spacing:.25em">FIRST GOVERNMENT CONTRACT</div>
+      </div>
+      <div style="background:var(--near);padding:36px 32px">
+        <div class="g3-label dim">Round 3 · 2028</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:200;color:var(--off);line-height:1;margin-bottom:20px">€8<span style="color:var(--mid)">M</span></div>
+        <div class="g3-title" style="margin-bottom:16px;color:var(--off)">Series A</div>
+        <div class="g3-body" style="line-height:2.2">
+          60% → 100+ bots, Caribbean scale<br>
+          20% → Shenzhen manufacturing<br>
+          10% → Southeast Asia entry<br>
+          10% → Regional operations hubs
+        </div>
+        <div style="margin-top:20px;font-family:'Geist Mono',monospace;font-size:9px;color:var(--mid);letter-spacing:.25em">€5M ARR · 5 ISLANDS</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 17 UNIT ECONOMICS ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-left" style="max-width:1200px">
+    <span class="label">Unit Economics</span>
+    <div class="d3" style="margin-bottom:48px">The math<br><em>works at every stage.</em></div>
+    <div class="stat-line">
+      <div class="stat-b">
+        <div class="g3-label" style="margin-bottom:12px">Prototype · 5 bots</div>
+        <div class="stat-n" style="font-size:clamp(32px,4vw,52px)">€1,500<span class="t">/bot</span></div>
+        <div class="stat-l">Hardware breakeven ~14 months</div>
+      </div>
+      <div class="stat-b">
+        <div class="g3-label" style="margin-bottom:12px">Seed Scale · 50 bots</div>
+        <div class="stat-n" style="font-size:clamp(32px,4vw,52px)">€600<span class="t">/bot</span></div>
+        <div class="stat-l">EBITDA positive Month 8</div>
+      </div>
+      <div class="stat-b">
+        <div class="g3-label" style="margin-bottom:12px">Series A · 500+ bots</div>
+        <div class="stat-n" style="font-size:clamp(32px,4vw,52px)">€180<span class="t">/bot</span></div>
+        <div class="stat-l">Projected ARR €15–25M</div>
+      </div>
+      <div class="stat-b">
+        <div class="g3-label" style="margin-bottom:12px">The driver</div>
+        <div class="stat-n" style="font-size:clamp(32px,4vw,52px)">10<span class="t">x</span></div>
+        <div class="stat-l">COGS reduction<br>from prototype to scale</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 18 ROADMAP ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:1200px">
+    <span class="label">Roadmap</span>
+    <div class="d3" style="text-align:center;margin-bottom:48px">
+      Five phases. <em>One direction.</em>
+    </div>
+    <div class="rmap">
+      <div class="rphase now">
+        <div class="rphase-yr">▶ 2026 · Now</div>
+        <div class="rphase-title">Próspera Pilot</div>
+        <div class="rphase-body">5 bots · 2 packstations · First autonomous inter-island delivery · Gov data MOU</div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-yr dim">2027</div>
+        <div class="rphase-title">Bay Islands</div>
+        <div class="rphase-body">20 bots · Roatán + Utila + Guanaja · Gig worker app · Sargassum contracts</div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-yr dim">2028</div>
+        <div class="rphase-title">Caribbean</div>
+        <div class="rphase-body">100 bots · Jamaica · USVI · Dominican Republic · Series A</div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-yr dim">2029</div>
+        <div class="rphase-title">Southeast Asia</div>
+        <div class="rphase-body">500 bots · Indonesia · Philippines · €15M ARR</div>
+      </div>
+      <div class="rphase">
+        <div class="rphase-yr dim">2030</div>
+        <div class="rphase-title">Global</div>
+        <div class="rphase-body">2,000+ bots · Pacific · Amazon · Mediterranean · Exit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 19 TEAM ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label">The Founder</span>
+    <div class="d3" style="text-align:center">Built by the person<br><em>who needed it most.</em></div>
+    <div class="line center gold"></div>
+    <p class="body" style="text-align:center;margin-bottom:36px">
+      <strong>Daniel Seyffarth</strong> — Founder & CEO · Staracces UG · Berlin<br><br>
+      Inventor of the JB5 · German Patent DE 10 2023 130 535 A1<br>
+      PCT coverage across 154 countries · BMWK + WIPANO funded<br>
+      Lived and built in Próspera ZEDE 2025–26<br>
+      <span style="color:var(--teal)">Priority timestamp secured: DOI 10.5281/zenodo.19244468</span>
+    </p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--dim);color:var(--mid)">Hardware Inventor</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(0,200,200,.3);color:var(--teal)">PCT Patent</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(200,160,80,.3);color:var(--gold)">State Funded</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(0,200,200,.3);color:var(--teal)">Próspera Network</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--dim);color:var(--mid)">inv3nt0r</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 20 EXIT ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-left" style="max-width:1200px">
+    <span class="label gold">Exit Landscape</span>
+    <div class="d2" style="margin-bottom:40px">Not a €50M exit.<br><span class="g">$1B+ territory.</span></div>
+    <table class="tbl">
+      <thead>
+        <tr><th>Acquirer</th><th>Strategic Logic</th><th>Why They Need Us</th><th>Value</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Amazon / DHL Ventures</td><td>Island last-mile for Prime</td><td>Infrastructure they cannot build fast enough</td><td class="gold">$2 – 5B</td></tr>
+        <tr><td>Maersk / MSC</td><td>Data sovereignty on shipping routes</td><td>Intelligence layer on the routes they dominate</td><td class="gold">Strategic</td></tr>
+        <tr><td>Palantir / Anduril</td><td>Maritime surveillance mesh</td><td>Commercial wrapper that makes the defense product viable</td><td class="gold">$1B+</td></tr>
+        <tr><td>US DoD / DARPA</td><td>Autonomous maritime logistics + ISR</td><td>RAND published exactly this use case in 2025</td><td class="gold">Defense contract</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ══ 21 POWER — VAWT ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-left" style="background-image:url('https://images.unsplash.com/photo-1504197832061-98ffd9b5f3e4?w=2000&q=85')"></div>
+  <div class="c c-left">
+    <span class="label">Emergency Power</span>
+    <div class="d2">When the storm hits —<br><em>KYMA is already<br>in the water.</em></div>
+    <div class="line"></div>
+    <p class="body" style="margin-bottom:32px">
+      Vertical axis wind turbines fold flat during transit.<br>
+      At anchor: extend, spin, power the community.<br>
+      <strong>The worse the storm — the more energy KYMA produces.</strong>
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);max-width:700px">
+      <div style="background:var(--near);padding:24px 20px">
+        <div class="g3-label">Anchored Mode</div>
+        <div class="g3-title">300–500W</div>
+        <div class="g3-body">Wind turbine output in storm conditions. Charges while powering.</div>
+      </div>
+      <div style="background:var(--near);padding:24px 20px">
+        <div class="g3-label gold">50m Cable</div>
+        <div class="g3-title">Shore Power</div>
+        <div class="g3-body">Rolls out automatically. Homes, clinics, hotels — connected in minutes.</div>
+      </div>
+      <div style="background:var(--near);padding:24px 20px">
+        <div class="g3-label">Revenue</div>
+        <div class="g3-title">$200–400/mo</div>
+        <div class="g3-body">Hotel standby contracts. $150–300 per emergency dispatch.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 22 LOCAL COMMERCE ══ -->
+
+<div class="s" style="background:var(--dark)">
+  <div class="c c-center" style="max-width:1000px">
+    <span class="label">Local Commerce Layer</span>
+    <div class="d3" style="text-align:center;margin-bottom:24px">
+      The <em>Prime Effect</em><br>arrives on the islands.
+    </div>
+    <p class="body" style="text-align:center;margin-bottom:40px">
+      Amazon Prime proved it: give people reliable delivery<br>and they buy three times more.<br>
+      <strong>KYMA brings that effect to island economies for the first time.</strong>
+    </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:var(--border);width:100%">
+      <div style="background:var(--near);padding:28px 20px;text-align:center">
+        <div class="g3-label">Restaurants</div>
+        <div class="g3-title">Island Uber Eats</div>
+        <div class="g3-body">Local delivery on the island. Inter-island delivery by bot. A restaurant on Roatán serves hotels on Utila.</div>
+      </div>
+      <div style="background:var(--near);padding:28px 20px;text-align:center">
+        <div class="g3-label gold">Retail</div>
+        <div class="g3-title">Same-Day Restocking</div>
+        <div class="g3-body">Order in the morning from the mainland. Bot delivers by afternoon. Never out of stock again.</div>
+      </div>
+      <div style="background:var(--near);padding:28px 20px;text-align:center">
+        <div class="g3-label">New Businesses</div>
+        <div class="g3-title">New Economy</div>
+        <div class="g3-body">Ghost kitchens. Local subscription boxes. Artisan export. Businesses that never existed because infrastructure wasn't there.</div>
+      </div>
+      <div style="background:var(--near);padding:28px 20px;text-align:center">
+        <div class="g3-label gold">Gig Workers</div>
+        <div class="g3-title">Both Ends</div>
+        <div class="g3-body">Pick up from sender. Drop off to recipient. Flexible income for every island resident.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 23 PRÓSPERA MULTIPLIER ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label">The Próspera Thesis</span>
+    <div class="d3" style="text-align:center;margin-bottom:32px">
+      The boldest entrepreneurs<br>in the world came for<br><em>maximum freedom.</em>
+    </div>
+    <div class="line center gold"></div>
+    <div class="quote" style="text-align:center;font-size:clamp(20px,3vw,36px);margin-bottom:32px">
+      "KYMA gives them the last thing missing:<br>the infrastructure to <strong>actually use it.</strong>"
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);width:100%;max-width:700px;margin:0 auto">
+      <div style="background:var(--surface);padding:24px 28px">
+        <div class="g3-label" style="color:#c05050">Before KYMA</div>
+        <div class="g3-body" style="line-height:2.2;color:var(--mid)">
+          Wait weeks for parts<br>
+          No local delivery<br>
+          No restaurant service<br>
+          Power cuts with no backup<br>
+          Founders leave
+        </div>
+      </div>
+      <div style="background:var(--surface);padding:24px 28px">
+        <div class="g3-label">After KYMA</div>
+        <div class="g3-body" style="line-height:2.2">
+          Same-day delivery<br>
+          Full local commerce<br>
+          Restaurants deliver<br>
+          Emergency power on demand<br>
+          <strong style="color:var(--teal)">Founders stay and build</strong>
+        </div>
+      </div>
+    </div>
+    <p class="body" style="text-align:center;margin-top:28px;font-size:14px">
+      Every additional resident KYMA attracts to Próspera<br>
+      generates <strong>$50,000–100,000+</strong> in long-term economic value for the ZEDE.<br>
+      KYMA doesn't cost Próspera. <strong>KYMA pays for itself many times over.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ══ 24 THE MOAT ══ -->
+
+<div class="s" style="background:var(--near)">
+  <div class="c c-center" style="max-width:900px">
+    <span class="label">Why Nobody Can Copy This</span>
+    <div class="d3" style="text-align:center;margin-bottom:40px">
+      The railroad analogy.<br><em>Whoever owns the rails<br>owns the market.</em>
+    </div>
+    <ul class="feat-list" style="max-width:700px;margin:0 auto">
+      <li><div><strong>Patent protection</strong> — system claims filed. Founder has done this before across 154 countries.</div></li>
+      <li><div><strong>Physical network effect</strong> — you cannot copy a fleet. Years of buildup required to match reliability.</div></li>
+      <li><div><strong>Dual-use = critical infrastructure</strong> — governments don't cancel their surveillance backbone.</div></li>
+      <li><div><strong>Regulatory first-mover</strong> — first licensed maritime autonomous operator per jurisdiction = years of advantage.</div></li>
+      <li><div><strong>Founder is the market</strong> — lived in Próspera, has the network, knows the pain personally.</div></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ══ 22 CLOSE ══ -->
+
+<div class="s" style="background:#000">
+  <div class="photo dim-center" style="background-image:url('https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=2000&q=90')"></div>
+  <div class="c c-center">
+    <span class="label">Pre-Seed 2026</span>
+    <div class="d1" style="text-align:center">
+      The sea has<br>no roads.<br><em>Until now.</em>
+    </div>
+    <div class="line center"></div>
+    <p class="body" style="text-align:center;margin-bottom:40px">
+      We are assembling the founding team and first pilot partners.<br>
+      <strong>NDA required. No commitment beyond a conversation.</strong>
+    </p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(0,200,200,.3);color:var(--teal)">Daniel Seyffarth</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(0,200,200,.3);color:var(--teal)">Staracces UG · Berlin</span>
+      <span style="font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;padding:7px 18px;border:1px solid rgba(200,160,80,.3);color:var(--gold)">Pre-Seed · €150K</span>
+    </div>
+    <p style="margin-top:48px;font-family:'Geist Mono',monospace;font-size:9px;letter-spacing:.4em;color:rgba(255,255,255,.1)">
+      KYMA · CONFIDENTIAL · © 2026 STARACCES UG
+    </p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<div id="nav">
+  <button class="nbtn" onclick="go(-1)">←</button>
+  <div class="nprog"><div class="npfill" id="pf"></div></div>
+  <div class="ncnt" id="cnt">1 / 22</div>
+  <button class="nbtn" onclick="go(1)">→</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.s');
+const N = slides.length;
+let cur = 0;
+
+function go(dir) {
+  const next = cur + dir;
+  if (next < 0 || next >= N) return;
+  slides[cur].classList.remove('active');
+  cur = next;
+  slides[cur].classList.add('active');
+  document.getElementById('cnt').textContent = (cur+1) + ' / ' + N;
+  document.getElementById('num').textContent = String(cur+1).padStart(2,'0') + ' / ' + String(N).padStart(2,'0');
+  document.getElementById('pf').style.width = ((cur+1)/N*100) + '%';
+}
+
+document.addEventListener('keydown', e => {
+  if(['ArrowRight','ArrowDown',' '].includes(e.key)){e.preventDefault();go(1)}
+  if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();go(-1)}
+});
+let tx=0,ty=0;
+document.addEventListener('touchstart',e=>{
+  tx=e.touches[0].clientX;
+  ty=e.touches[0].clientY;
+});
+document.addEventListener('touchend',e=>{
+  const dx=tx-e.changedTouches[0].clientX;
+  const dy=ty-e.changedTouches[0].clientY;
+  // Only navigate if horizontal swipe is dominant
+  if(Math.abs(dx)>Math.abs(dy)*1.5 && Math.abs(dx)>60) go(dx>0?1:-1);
+});
+
+document.getElementById('pf').style.width = (1/N*100)+'%';
+// Update corner number on load
+document.getElementById('num').textContent = '01 / ' + String(N).padStart(2,'0');
+</script>
+
+</body>
+</html>
